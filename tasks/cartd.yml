@@ -3,4 +3,4 @@
   include: redis.yml
 - name: Setup Pacifica
   import_role:
-    name: pacifica
+    name: pacifica.ansible_pacifica
