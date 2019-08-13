@@ -1,0 +1,6 @@
+---
+- name: Start Redis
+  systemd:
+    name: redis-server
+    state: started
+  become: true

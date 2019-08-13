@@ -1,0 +1,124 @@
+---
+__pacifica_client_deps: &__pacifica_client_deps
+  - archiveinterface
+  - metadata
+  - policy
+  - uniqueid
+  - ingest_frontend
+  - ingest_backend
+  - cartd_frontend
+  - cartd_backend
+  - notify_frontend
+  - notify_backend
+github_repository_dependencies:
+  archiveinterface: []
+  cartd:
+    - archiveinterface
+  cli: *__pacifica_client_deps
+  dispatcher: *__pacifica_client_deps
+  ingest:
+    - archiveinterface
+    - policy
+    - metadata
+    - uniqueid
+    - notify_frontend
+  metadata: []
+  notifications:
+    - metadata
+    - policy
+  policy:
+    - metadata
+  proxy:
+    - archiveinterface
+    - metadata
+  python-downloader:
+    - archiveinterface
+    - metadata
+    - cartd_frontend
+    - cartd_backend
+  python-uploader:
+    - archiveinterface
+    - metadata
+    - policy
+    - uniqueid
+    - ingest_frontend
+    - ingest_backend
+  uniqueid: []
+
+setup_packages: []
+python_packages: []
+external_python: true
+pacifica_enabled_services: "{{ github_repository_dependencies[github_repository] }}"
+__common_python: &__common_python
+  virtualenv_path: /home/travis/virtualenv
+  virtualenv: "{{ travis_virtualenv }}"
+  virtualenv_python: "/home/travis/virtualenv/{{ travis_virtualenv }}/bin/python"
+  aux_pkg:
+    - uwsgi
+    - pip
+    - redis
+    - amqp
+    - psycopg2
+__common_ingest: &__common_ingest
+  <<: *__common_python
+  ini_config:
+    celery:
+      broker_url: redis://127.0.0.1:6379/0
+    database:
+      peewee_url: postgres://postgres:@127.0.0.1:5432/pacifica_ingest
+  env_vars:
+    INGEST_CONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/ingest_frontend.ini"
+    INGEST_CPCONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/ingest_frontend-cp.ini"
+__common_cartd: &__common_cartd
+  <<: *__common_python
+  ini_config:
+    celery:
+      broker_url: redis://127.0.0.1:6379/1
+    database:
+      peewee_url: postgres://postgres:@127.0.0.1:5432/pacifica_cartd
+  env_vars:
+    CARTD_CONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/cartd_frontend.ini"
+    CARTD_CPCONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/cartd_frontend-cp.ini"
+__common_notify: &__common_notify
+  <<: *__common_python
+  ini_config:
+    celery:
+      broker_url: redis://127.0.0.1:6379/2
+    database:
+      peewee_url: postgres://postgres:@127.0.0.1:5432/pacifica_notify
+  env_vars:
+    NOTIFICATIONS_CONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/notify_frontend.ini"
+    NOTIFICATIONS_CPCONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/notify_frontend-cp.ini"
+pacifica_available_services:
+  archiveinterface:
+    <<: *__common_python
+    env_vars:
+      ARCHIVEINTERFACE_CONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/archiveinterface.ini"
+      ARCHIVEINTERFACE_CPCONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/archiveinterface-cp.ini"
+  metadata:
+    <<: *__common_python
+    env_vars:
+      METADATA_CONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/metadata.ini"
+      METADATA_CPCONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/metadata-cp.ini"
+    ini_config:
+      database:
+        peewee_url: postgres://postgres:@127.0.0.1:5432/pacifica_metadata
+  policy:
+    <<: *__common_python
+    env_vars:
+      POLICY_CONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/policy.ini"
+      POLICY_CPCONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/policy-cp.ini"
+  uniqueid:
+    <<: *__common_python
+    env_vars:
+      UNIQUEID_CONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/uniqueid.ini"
+      UNIQUEID_CPCONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/uniqueid-cp.ini"
+    ini_config:
+      database:
+        peewee_url: postgres://postgres:@127.0.0.1:5432/pacifica_uniqueid
+  ingest_frontend: *__common_ingest
+  ingest_backend: *__common_ingest
+  cartd_frontend: *__common_cartd
+  cartd_backend: *__common_cartd
+  notify_frontend: *__common_notify
+  notify_backend: *__common_notify

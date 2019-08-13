@@ -1,0 +1,20 @@
+---
+- name: Start PostgreSQL
+  systemd:
+    name: postgresql
+    state: started
+  become: true
+- name: Install psycopg2
+  pip:
+    name: psycopg2
+    executable: /home/travis/virtualenv/python3.7/bin/pip
+- name: Create PostgreSQL Databases
+  postgresql_db:
+    name: "{{ item }}"
+  with_items:
+    - pacifica_metadata_upgrade
+    - pacifica_metadata
+    - pacifica_ingest
+    - pacifica_cartd
+    - pacifica_notify
+    - pacifica_uniqueid

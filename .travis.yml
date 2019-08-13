@@ -1,0 +1,20 @@
+---
+dist: trusty
+sudo: required
+group: edge
+services: docker
+language: python
+python: 3.6
+env:
+  - SCENERIO=archiveinterface
+  - SCENERIO=core
+  - SCENERIO=default
+  - SCENERIO=in
+  - SCENERIO=notify
+  - SCENERIO=out
+install: pip install ansible git+https://github.com/dmlb2000/molecule.git@92b1050f5e8e40eab61c904ccdd5ee2f9f7e17ac docker-py pre-commit pylint pep257
+before_install:
+  - cd ..
+  - ln -s ansible-pacifica pacifica
+  - cd pacifica
+script: molecule test -s $SCENERIO

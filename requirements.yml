@@ -1,0 +1,5 @@
+---
+# Elasticsearch
+- name: pacifica
+  src: https://github.com/dmlb2000/ansible-pacifica.git
+  version: fix-10-add-root-checks

@@ -1,0 +1,6 @@
+---
+- name: Setup Redis
+  include: redis.yml
+- name: Setup Pacifica
+  import_role:
+    name: pacifica
