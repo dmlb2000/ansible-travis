@@ -1,4 +1,3 @@
 ---
-- name: pacifica
-  src: pacifica.ansible_pacifica
+- name: pacifica.ansible_pacifica
   version: v0.1.1
