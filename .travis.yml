@@ -15,6 +15,6 @@ install:
 before_install:
   - ssh-keygen -b 2048 -t rsa -f /home/travis/.ssh/id_rsa -q -N ""
   - cd ..
-  - ln -s ansible-travis travis
-  - cd travis
+  - ln -s ansible-travis pacifica.ansible_travis
+  - cd pacifica.ansible_travis
 script: ./test.sh $SCENERIO
