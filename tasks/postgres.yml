@@ -7,7 +7,7 @@
 - name: Install psycopg2
   pip:
     name: psycopg2
-    executable: /home/travis/virtualenv/python3.7/bin/pip
+    executable: /home/travis/virtualenv/{{ travis_virtualenv }}/bin/pip
 - name: Create PostgreSQL Databases
   postgresql_db:
     name: "{{ item }}"

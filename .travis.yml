@@ -6,9 +6,9 @@ services: docker
 language: python
 python: 3.7
 env:
-  - SCENERIO=cartd-python3.7
-  - SCENERIO=metadata-python3.7
-  - SCENERIO=policy-python3.7
+  - SCENERIO=cartd
+  - SCENERIO=metadata
+  - SCENERIO=policy
 install:
   - pip install ansible molecule==2.22rc6 docker-py pre-commit pylint pep257
   - ansible-galaxy install -r requirements.yml -p /home/travis/build/pacifica

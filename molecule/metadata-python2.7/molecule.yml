@@ -6,7 +6,7 @@ driver:
   options:
     managed: false
     ansible_connection_options:
-      ansible_python_interpreter: /home/travis/virtualenv/python3.7/bin/python
+      ansible_python_interpreter: /home/travis/virtualenv/python2.7/bin/python
       ansible_connection: ssh
       ansible_host: localhost
       ansible_port: 2222
