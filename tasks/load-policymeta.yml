@@ -10,10 +10,10 @@
     version: "v{{ version_result.stdout_lines[1][9:] }}"
 - name: Check Metadata Content
   uri:
-    url: http://localhost:8121/keys
+    url: http://localhost:8121/users
     return_content: true
   register: metadata_result
 - name: Load the Policy Metadata
   command: "/home/travis/virtualenv/{{ travis_virtualenv }}/bin/python /home/travis/pacifica-policy/tests/test_files/loadit_test.py"
-  when: metadata_result.json|length == 0
-  changed_when: metadata_result.json|length > 0
+  when: metadata_result.json|length == 2
+  changed_when: metadata_result.json|length > 3
