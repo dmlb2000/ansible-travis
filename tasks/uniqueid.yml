@@ -1,0 +1,3 @@
+---
+- name: Setup Postgres
+  include: postgres.yml

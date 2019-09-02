@@ -33,7 +33,7 @@ Role Defaults
 --------------
 
 The role defaults are there to control the user driven configuration of the
-Pacifica services. Each service configuration should be a dictionary named 
+Pacifica services. Each service configuration should be a dictionary named
 in the `pacifica_available_services` dictionary. The service configurations
 are then referenced by items in the `pacifica_enabled_services` list.
 

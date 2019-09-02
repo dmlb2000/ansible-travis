@@ -1,0 +1,31 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: delegated
+  options:
+    managed: false
+    ansible_connection_options:
+      ansible_python_interpreter: /home/travis/virtualenv/python2.7/bin/python
+      ansible_connection: ssh
+      ansible_host: localhost
+      ansible_port: 2222
+      ansible_user: travis
+lint:
+  name: yamllint
+platforms:
+  - name: ubuntu
+provisioner:
+  name: ansible
+  playbooks:
+    converge: ../common/playbook.yml
+  options:
+    extra-vars: travis_virtualenv=python2.7 github_repository=uniqueid
+  lint:
+    name: ansible-lint
+scenario:
+  name: uniqueid-python2.7
+verifier:
+  name: testinfra
+  lint:
+    name: pre-commit
