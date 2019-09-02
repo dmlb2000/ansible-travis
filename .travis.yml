@@ -9,6 +9,7 @@ env:
   - SCENERIO=cartd
   - SCENERIO=metadata
   - SCENERIO=policy
+  - SCENERIO=elasticsearch
 install:
   - pip install ansible molecule==2.22rc6 docker-py pre-commit pylint pep257
   - ansible-galaxy install -r requirements.yml -p /home/travis/build/pacifica

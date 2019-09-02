@@ -26,6 +26,9 @@ github_repository_dependencies:
   notifications:
     - metadata
     - policy
+  elasticsearch:
+    - metadata
+    - policy
   policy:
     - metadata
   proxy:

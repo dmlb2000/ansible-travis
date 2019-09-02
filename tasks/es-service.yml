@@ -1,0 +1,6 @@
+---
+- name: start elasticsearch
+  systemd:
+    name: elasticsearch
+    state: started
+  become: true

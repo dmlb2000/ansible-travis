@@ -1,5 +1,5 @@
 ---
-- name: Get Pacifica Version
+- name: Get Pacifica Metadata Version
   command: "/home/travis/virtualenv/{{ travis_virtualenv }}/bin/pip show pacifica-metadata"
   register: version_result
   changed_when: false

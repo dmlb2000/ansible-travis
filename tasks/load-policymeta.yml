@@ -1,0 +1,19 @@
+---
+- name: Get Pacifica Policy Version
+  command: "/home/travis/virtualenv/{{ travis_virtualenv }}/bin/pip show pacifica-policy"
+  register: version_result
+  changed_when: false
+- name: Checkout Pacifica Policy
+  git:
+    repo: 'https://github.com/pacifica/pacifica-policy.git'
+    dest: /home/travis/pacifica-policy
+    version: "v{{ version_result.stdout_lines[1][9:] }}"
+- name: Check Metadata Content
+  uri:
+    url: http://localhost:8121/keys
+    return_content: true
+  register: metadata_result
+- name: Load the Policy Metadata
+  command: "/home/travis/virtualenv/{{ travis_virtualenv }}/bin/python /home/travis/pacifica-policy/tests/test_files/loadit_test.py"
+  when: metadata_result.json|length == 0
+  changed_when: metadata_result.json|length > 0

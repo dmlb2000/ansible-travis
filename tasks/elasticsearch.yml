@@ -1,0 +1,14 @@
+---
+- name: Setup Postgres
+  include: postgres.yml
+- name: Setup Pacifica
+  import_role:
+    name: pacifica.ansible_pacifica
+- name: Setup Redis
+  include: redis.yml
+- name: Configure ElasticSearch
+  include: es-service.yml
+- name: Load Metadata
+  include: load-metadata.yml
+- name: Load Policy Meta
+  include: load-policymeta.yml
