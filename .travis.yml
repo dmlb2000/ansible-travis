@@ -6,17 +6,17 @@ services: docker
 language: python
 python: 3.7
 env:
-  - SCENERIO=cartd
-  - SCENERIO=metadata
-  - SCENERIO=policy
-  - SCENERIO=elasticsearch
-  - SCENERIO=uniqueid
+  - SCENERIOS=cartd
+  - SCENERIOS=metadata
+  - SCENERIOS=policy
+  - SCENERIOS=elasticsearch
+  - SCENERIOS="uniqueid archiveinterface"
 install:
-  - pip install ansible molecule==2.22rc6 docker-py pre-commit pylint pep257
+  - pip install ansible 'molecule>2.21' docker-py pre-commit pylint pep257
   - ansible-galaxy install -r requirements.yml -p /home/travis/build/pacifica
 before_install:
   - ssh-keygen -b 2048 -t rsa -f /home/travis/.ssh/id_rsa -q -N ""
   - cd ..
   - ln -s ansible-travis pacifica.ansible_travis
   - cd pacifica.ansible_travis
-script: ./test.sh $SCENERIO
+script: ./test.sh "${SCENERIOS}"
