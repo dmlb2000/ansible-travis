@@ -7,7 +7,7 @@ language: python
 python: 3.7
 env:
   - SCENERIOS=cartd
-  - SCENERIOS=metadata
+  - SCENERIOS="metadata ingest"
   - SCENERIOS="policy metadata-mgmt"
   - SCENERIOS=elasticsearch
   - SCENERIOS="uniqueid archiveinterface"

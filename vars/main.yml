@@ -21,7 +21,6 @@ github_repository_dependencies:
     - policy
     - metadata
     - uniqueid
-    - notify_frontend
   metadata: []
   metadata-mgmt:
     - metadata
