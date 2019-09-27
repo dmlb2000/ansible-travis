@@ -1,0 +1,10 @@
+---
+- name: Setup Postgres
+  include: postgres.yml
+- name: Setup Pacifica
+  import_role:
+    name: pacifica.ansible_pacifica
+- name: Load Metadata
+  include: load-metadata.yml
+- name: Load Policy Metadata
+  include: load-policymeta.yml
