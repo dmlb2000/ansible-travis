@@ -15,7 +15,7 @@ for scenario in ${SCENARIOS}; do
       --name travis \
       --privileged -d \
       -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
-      travisci/ci-ubuntu-1804:packer-1565538440-761b0051 \
+      travisci/ci-ubuntu-1804:packer-1566551110-e45a2919 \
       /lib/systemd/systemd
     cat ~/.ssh/id_rsa.pub | \
       docker exec \
