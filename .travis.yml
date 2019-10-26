@@ -6,11 +6,11 @@ services: docker
 language: python
 python: 3.7
 env:
-  - SCENERIOS=cartd
+  - SCENERIOS="cartd"
   - SCENERIOS="metadata ingest"
   - SCENERIOS="policy metadata-mgmt"
   - SCENERIOS=elasticsearch
-  - SCENERIOS="uniqueid archiveinterface"
+  - SCENERIOS="uniqueid archiveinterface notifications"
 install:
   - pip install ansible 'molecule>2.21' docker-py pre-commit pylint pep257
   - ansible-galaxy install -r requirements.yml -p /home/travis/build/pacifica
