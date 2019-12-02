@@ -97,6 +97,7 @@ __common_notify: &__common_notify
 pacifica_available_services:
   archiveinterface:
     <<: *__common_python
+    processes: 4
     env_vars:
       ARCHIVEINTERFACE_CONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/archiveinterface.ini"
       ARCHIVEINTERFACE_CPCONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/archiveinterface-cp.ini"
