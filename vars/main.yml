@@ -109,6 +109,11 @@ pacifica_available_services:
     ini_config:
       database:
         peewee_url: postgres://postgres:@127.0.0.1:5432/pacifica_metadata
+  proxy:
+    <<: *__common_python
+    env_vars:
+      PROXY_CONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/proxy.ini"
+      PROXY_CPCONFIG: "/home/travis/virtualenv/{{ travis_virtualenv }}/proxy-cp.ini"
   policy:
     <<: *__common_python
     env_vars:
