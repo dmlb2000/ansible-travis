@@ -9,10 +9,10 @@ env:
   - SCENERIOS="cartd proxy"
   - SCENERIOS="metadata ingest"
   - SCENERIOS="policy metadata-mgmt"
-  - SCENERIOS=elasticsearch
+  - SCENERIOS="elasticsearch uploader downloader"
   - SCENERIOS="uniqueid archiveinterface notifications"
 install:
-  - pip install ansible 'molecule>2.21' docker-py pre-commit pylint pep257
+  - pip install ansible molecule docker-py pre-commit pylint pep257
   - ansible-galaxy install -r requirements.yml -p /home/travis/build/pacifica
 before_install:
   - ssh-keygen -b 2048 -t rsa -f /home/travis/.ssh/id_rsa -q -N ""
