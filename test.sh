@@ -1,7 +1,7 @@
 #!/bin/bash -xe
 
 SCENARIOS=${1:-default}
-PYTHONS=${2:-python2.7 python3.6}
+PYTHONS=${2:-python3.6 python3.7 python3.8}
 
 for scenario in ${SCENARIOS}; do
   for venv in ${PYTHONS}; do
@@ -15,7 +15,7 @@ for scenario in ${SCENARIOS}; do
       --name travis \
       --privileged -d \
       -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
-      travisci/ci-ubuntu-1804:packer-1566551110-e45a2919 \
+      travisci/ci-ubuntu-1804:packer-1577347966-74db3f91 \
       /lib/systemd/systemd
     cat ~/.ssh/id_rsa.pub | \
       docker exec \

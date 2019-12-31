@@ -6,7 +6,7 @@ driver:
   options:
     managed: false
     ansible_connection_options:
-      ansible_python_interpreter: /home/travis/virtualenv/python2.7/bin/python
+      ansible_python_interpreter: /home/travis/virtualenv/python3.8/bin/python
       ansible_connection: ssh
       ansible_host: localhost
       ansible_port: 2222
@@ -20,11 +20,11 @@ provisioner:
   playbooks:
     converge: ../common/playbook.yml
   options:
-    extra-vars: travis_virtualenv=python2.7 github_repository=metadata-mgmt
+    extra-vars: travis_virtualenv=python3.8 github_repository=archiveinterface
   lint:
     name: ansible-lint
 scenario:
-  name: metadata-mgmt-python2.7
+  name: archiveinterface-python3.8
 verifier:
   name: testinfra
   lint:
