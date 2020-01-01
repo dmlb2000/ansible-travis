@@ -7,10 +7,10 @@ language: python
 python: 3.8
 env:
   - SCENERIOS="cartd proxy"
-  - SCENERIOS="metadata ingest"
+  - SCENERIOS="metadata ingest cli"
   - SCENERIOS="policy metadata-mgmt"
-  - SCENERIOS="elasticsearch uploader downloader"
-  - SCENERIOS="uniqueid archiveinterface notifications"
+  - SCENERIOS="elasticsearch python-uploader python-downloader"
+  - SCENERIOS="uniqueid archiveinterface notifications dispatcher"
 install:
   - pip install ansible molecule docker-py pre-commit pylint pep257
   - ansible-galaxy install -r requirements.yml -p /home/travis/build/pacifica

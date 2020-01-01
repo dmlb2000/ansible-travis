@@ -24,7 +24,7 @@ provisioner:
   lint:
     name: ansible-lint
 scenario:
-  name: downloader-python3.8
+  name: python-downloader-python3.8
 verifier:
   name: testinfra
   lint:
