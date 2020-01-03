@@ -1,4 +1,19 @@
 ---
+- name: Download Elasticsearch
+  get_url:
+    url: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.1-amd64.deb
+    dest: /home/travis/
+    checksum: sha512:3b6d4a0a39c8a480eaee6eb710a56092b93c32cc7ac7ed60409e2b373eb80a20d09485337ebcebb85648f7b465370180cf09a6e2bc4fba7327635dbc5c5cc74a
+- name: Install Elasticsearch
+  command: dpkg -i --force-confnew /home/travis/elasticsearch-7.5.1-amd64.deb
+  become: true
+  args:
+    creates: /usr/share/elasticsearch/lib/elasticsearch-7.5.1.jar
+- name: Check defaults configuration file mode
+  become: true
+  file:
+    path: /etc/default/elasticsearch
+    mode: 0644
 - name: start elasticsearch
   systemd:
     name: elasticsearch
