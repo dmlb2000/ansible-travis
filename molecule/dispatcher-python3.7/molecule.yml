@@ -2,21 +2,23 @@
 dependency:
   name: galaxy
 driver:
-  name: delegated
-  options:
-    managed: false
-    ansible_connection_options:
-      ansible_python_interpreter: /home/travis/virtualenv/python3.7/bin/python
-      ansible_connection: ssh
-      ansible_host: localhost
-      ansible_port: 2222
-      ansible_user: travis
+  name: docker
 lint:
   name: yamllint
 platforms:
-  - name: ubuntu
+  - name: ubuntu-dispatcher-python3.7
+    dockerfile: ../common/Dockerfile.j2
+    image: travisci/ci-ubuntu-1804:packer-1577347966-74db3f91
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    command: /lib/systemd/systemd
 provisioner:
   name: ansible
+  connection_options:
+    ansible_python_interpreter: /home/travis/virtualenv/python3.7/bin/python
   playbooks:
     converge: ../common/playbook.yml
   options:
