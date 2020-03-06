@@ -6,10 +6,10 @@ services: docker
 language: python
 python: 3.8
 env:
-  - SCENERIOS="cartd proxy"
+  - SCENERIOS="cartd proxy python-downloader"
   - SCENERIOS="metadata ingest cli"
   - SCENERIOS="policy metadata-mgmt"
-  - SCENERIOS="elasticsearch python-uploader python-downloader"
+  - SCENERIOS="elasticsearch python-uploader"
   - SCENERIOS="uniqueid archiveinterface notifications dispatcher"
 install:
   - pip install ansible 'molecule<3' docker-py pre-commit pylint pep257
